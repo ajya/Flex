@@ -89,14 +89,7 @@
   {% endif %}
   <aside>
     <div>
-      <a href="{{ SITEURL }}">
-        {% if SITELOGO %}
-        <img src="{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
-        {% else %}
-        <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
-        {% endif %}
-      </a>
-      <h1><a href="{{ SITEURL }}">{{ SITETITLE }}</a></h1>
+      <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
 
       {% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
 
@@ -115,6 +108,19 @@
           {% endfor %}
         </ul>
       </nav>
+      {% endif %}
+
+      <h6 style="margin-bottom:0;">Contact me</h6>
+      <ul class="list">
+	{% for type, name in CONTACT %}
+	<li>{{type}}: {{name}}</li>
+	{% endfor %}
+      </ul>
+
+      {% if FEED_ALL_RSS %}
+      <ul class="list">
+	<a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}">{{ _('RSS') }}</a>
+      </ul>
       {% endif %}
 
       <ul class="social">
@@ -148,8 +154,6 @@
 
     {% if MAIN_MENU %}
     <nav>
-      <a href="{{ SITEURL }}">{{ _('Home') }}</a>
-
       {% for title, link in MENUITEMS %}
       <a href="{{ link }}">{{ title }}</a>
       {% endfor %}
